@@ -1,0 +1,533 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charSet="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Proximity algorithm</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="commonNav.css">
+  <script type="text/javascript" src="commonNav.js"></script>
+  <script type="text/javascript" src="p5kit.js"></script>
+  <script>"use strict";function $i(_){return document.getElementById(_);}</script>
+</head>
+<body>
+
+<section>
+<figure><canvas id="_0_"></canvas></figure>
+</section>
+
+<!--  <main> is a grid container 
+      If the screen size is 900px or greater, 
+      then display a 2-column grid.
+      Items within the main element are auto placed into columns.
+      Note that each article consists of a pair of elements.
+      Initially, there is a div and h1.
+      Next, there are header and article pairings down the page.
+      If the screen size is 899px or less,
+      then no grid is defined and elements run naturally down the page.
+      
+      
+      
+      
+User experience 
+LPS GPS 
+Lightning rods
+Restocking
+Drainage
+-->
+<main label="grid" style="/* grid */" onclick="//grid">
+
+<!-- 
+    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+     /\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/
+    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<div>&nbsp;</div>
+<h1>Proximity algorithm</h1>
+
+
+  <header id="abs"><p class="sub">00 Abstract</p></header>
+  <article><h3>A framework for disaster recovery.</h3>
+  <p>In the wake of natural disasters, survivors are often left to grapple with the devastating consequences of homelessness and a lack of basic resources. Even though humanitarian services work hard, their responsive and exploratory approach may lead to assistance that is inconsistent, uncoordinated, and temporary. Our solution? A <i class="emph">scalable recovery algorithm</i> for urban emergency environments that guarantees a consistent level of service for up to 100,000 survivors per city instance. And with the implementation of an autonomous system to manage its three phases of operation, no one is left behind in the long-term rebuilding process.</p>
+
+  <p>Some driving research questions include: How can we improve the user-experience of survivors, and better manage the logistics of provisioning products and services? What is an effective protocol to assist victims with reintegration into society during the recovery phase? In an ideal world, what would a safe, effective, perfectly operating post-disaster recovery scenario look like? Can we end survivor homelessness with an algorithm?</p>
+  </article>
+  
+
+  <header><p class="sub"></p></header>
+  <article><h3>Contents</h3>
+  <span class="index">
+  <p>00 <a href="#abs">Abstract</a></p>
+  <p>01 <a href="#def">Problem definition</a></p>
+  <p>02 <a href="#sol">Current solutions</a></p>
+  <p>03 <a href="#rel">Related works</a></p>
+  <p>04 <a href="#pro">Proposal</a></p>
+  <p>05 <a href="#alg">Algorithm</a></p>
+  <p>06 <a href="#frm">Framework</a></p>
+  <p>07 <a href="#inf">Infrastructure</a></p>
+  <p>08 <a href="#arc">Architecture</a></p>
+  <p>09 <a href="#src">Resource centers</a></p>
+  <p>10 <a href="#srv">Service modules</a></p>
+  <p>11 <a href="#res">Residential units</a></p>
+  <p>12 <a href="#mgt">Management</a></p>
+  <p>13 <a href="#cls">Closure</a></p>
+  <p>14 <a href="#ref">References</a></p>
+  </span>
+  <p></p>
+  </article>
+  
+  
+
+
+
+
+  <header id="def"><p class="sub">01 Problem definition</p><p></p></header>
+  <article><h3>Logistics is challenging, especially amid chaos.</h3>
+
+  <p>Survivors of natural disasters may find themselves facing numerous challenges, including homelessness and lack of access to basic necessities such as phones, transportation, identification, money, food, water, clean clothes, and a mailing address. Additionally, they may have difficulty accessing a computer to complete emergency forms. The infrastructure they relied on may have been damaged or destroyed and could take months or even years to rebuild. These sudden changes can be overwhelming. How do these individuals cope? Where do they find shelter? Who provides support? Where can they access services to help them recover?</p>
+
+  <p> For decades, relief services have been inconsistent in providing solutions to assist survivors with reintegration into society during the aftermath of major disasters. In some cases, mismanagement and chaos is expected as a result of supply lines disruption, sporadic communication, and scrambled logistics. The news media consistently reports on abandoned pets, violence, and sanitation issues.</p>
+  <p> In an effort to help, many individual relief groups provide effective support, however, they typically operate with narrow focus, limited time span, and potentially decentralized communications.</p>
+  <p>Misappropriated resources and logistical blockages yield coats and blankets in the summer, pallets of water bottles sitting on the tarmac, trailer homes with asbestos, or an abundance of useless high-heeled shoes.</p>
+  <p>Clementson and Fisher [<a href="#ref"><cite><span>T. Clementson and C. Fisher, Analysis of U.S. Military Helicopter Operations in Support of Humanitarian Assistance and Disaster Relief, Naval Postgraduate School, Monterey, 2011, apps.dtic.mil/sti/pdfs/ADA556268.pdf</span></cite></a>] detail the U.S. military helicopter operations in support of disaster relief efforts and they offer insight into the logistics and scale of supplies.</p>
+
+  <p>A list of types of natural disasters leading to homelessness can be found in the <a href="appendix.html#dis">appendix</a>.</p>
+  </article>  
+
+
+
+  <header id="sol"><p class="sub">02 Current solutions</p><p></p></header>
+  <article><h3>A mix of below-average services.</h3>
+  <p>
+  An assortment of relief services exist, however, they are reactive, distributed, sporadic, and difficult to use. The majority of relief is provided by the federal government, state and local-level agencies, and non-profit organizations. To a lesser extent some services are provisioned or funded by private individuals and for-profit organizations.
+  </p>
+    <p>Preparedness does not work for a long-term solution. Complete self-sufficiency is beyond the capabilities of any one person, as it requires a diverse range of resources that cannot be obtained by a single individual.</p>
+  <p>Examples of relief services are available in the <a href="appendix.html#ers">appendix</a>.</p>
+  </article>
+
+
+
+  <header id="rel"><p class="sub">03 Related works</p></header>
+  <article><h3>Literature review</h3>
+    <p> A variety of post-disaster operations have been studied including systems design, urban planning, and temporary housing. Recently, there is substantial progress in robotic construction, autonomous drone assistance, and smart-cities.</p> <p>
+    Buchanan [<a href="#ref"><cite><span>R. Buchanan, Design Issues, Vol. 8, No. 2 Spring, 1992, pp. 5-21, jstor.org/stable/1511637</span></cite></a>] recognized that design thinking affects critical areas of activity, organized services, and complex systems or environments. 
+    
+    Batty and Longley [<a href="#ref"><cite><span>M. Batty and P. Longley, Fractal Cities. Academic Press, 1994.</span></cite></a>] pioneered the use of fractal geometry to describe urban layout and to plan city formation.
+    
+    Terzidis [<a href="#ref"><cite><span>K. Terzidis, Algorithmic Architecture. Architectural Press, 2006.</span></cite></a>] explored algorithmic generation of architectural structures. 
+        
+        
+    Building on this theme, Harris [<a href="#ref"><cite><span>J. Harris, Fractal Architecture, University of New Mexico Press, 2012.</span></cite></a>] used organic patterns of fractal geometry for new architecture. 
+</p>
+
+<p>
+    A survey of temporary housing solutions by Félix et al [<a href="#ref"><cite><span>D. Félix, J. Branco, and A. Feio, Temporary housing after disasters: A state of the art survey. Habitat International, 2013, 40, pp.136-141,  doi.org/10.1016/j.habitatint.2013.03.006</span></cite></a>] proposed guidelines such as "planning ahead," "design beyond the unit," and "designing for people." [<a href="#ref"><cite><span>D. Félix, D. Monteiro, J. Branco, R. Bologna, and A. Feio, The role of temporary accommodation buildings for post-disaster housing reconstruction. Journal of Housing and the Built Environment, 2015, 30, pp.683-699, jstor.org/stable/43907357</span></cite></a>] They also identified the necessity for infrastructure, resources, and services to enable these temporary settlements. 
+</p>
+
+    <p>
+    Small, sustainable, residential structures have been studied by Pople [<a href="#ref"><cite><span>N. Pople, Small houses. New York, NY: Universe Publishing, 2003.</span></cite></a>], Richardson [<a href="#ref"><cite><span>P. Richardson, XS: small structures, green architecture. New York, NY: Universe, 2007.</span></cite></a>], and Ryker [<a href="#ref"><cite><span>L. Ryker, Off the grid homes: case studies for sustainable living. Layton, UT: Gibbs Smith, 2007.</span></cite></a>].
+       For post-disaster structures, Yeung and Harkins [<a href="#ref"><cite><span>W. Yeung and J. Harkins, Digital architecture for humanitarian design in post-disaster reconstruction, in International Journal of Architectural Computing, 9(1), pp.17-31., 2011, doi.org/10.1260/1478-0771.9.1.17</span></cite></a>] suggested that parametric modeling and generative algorithmic design is useful. 
+    Similary, for post-disaster living spaces, Karaoğlan and Alaçam [<a href="#ref"><cite><span>F. Karaoğlan and S. Alaçam, Design of a post-disaster shelter through soft computing, in International Journal of Architectural Computing, Vol. 17, No. 2, 2019, doi.org/10.1177/1478077119849694</span></cite></a>] explored 2D layouts that are generated and evaluated using genetic algorithms and fuzzy neural trees.
+    </p>
+
+    <p>
+    In the area of robot-based assembly in construction, Wit [<a href="#ref"><cite><span>A. Wit, Towards an Intelligent Architecture Creating Adaptive Building Systems for Inhabitation, in Proceedings of SIGRADI 2014, pp. 328-332, doi.org/10.5151/despro-sigradi2014-0065</span></cite></a>] investigated rapidly deployable, modular emergency housing using advanced, robotic on-site manufacturing.    
+    
+    Melenbrink et al. [<a href="#ref"><cite><span>N. Melenbrink, J. Werfel, and A. Menges, On-site autonomous construction robots: Towards unsupervised building, Automation in Construction, Vol. 119, November 2020, doi.org/10.1016/j.autcon.2020.103312</span></cite></a>] investigated the academic and applied advances in unsupervised construction by autonomous robots. 
+    
+    More recently, You et al [<a href="#ref"><cite><span>H. You, Y. Ye, T. Zhou, Q. Zhu, and J. Du, Robot-Enabled Construction Assembly with Automated Sequence Planning, 2023 arXiv preprint, arxiv.org/abs/2304.11018</span></cite></a>] demonstrated the feasibility of adapting a large language model to automated sequence planning. 
+    </p>
+    
+    <p>
+    Torabbeigi et al [<a href="#ref"><cite><span>M. Torabbeigi, G. Lim, and S. Kim, Application of Drones for Delivery of Emergency Items to Victims of Disaster, 2018, Conference Proceedings Texas Hurrican Center for Innovative Technology, hurricane.egr.uh.edu/events/thc-2018-conference</span></cite></a>] proposed the use of drones to deliver emergency items to survivors of natural disaster. We suggest their use in a multitude of operations during post-disaster operations phases. 
+    Tenzer et al [<a href="#ref"><cite><span>M. Tenzer, Z. Rasheed, and K. Shafique, Learning citywide patterns of life from trajectory monitoring. InProceedings of the 30th International Conference on Advances in Geographic Information Systems, 2022, pp. 1-12, arxiv.org/abs/2206.15352</span></cite></a>] mined city-wide patterns of life to incrementally learn normal and abnormal road transportation behavior.</p>
+    
+    <p>
+    Bezerra et al [<a href="#ref"><cite><span>R. Bezerra, F. Nascimento, and J. Martins, On computational infrastructure requirements to smart and autonomic cities framework, in 2015 IEEE First International Smart Cities Conference (ISC2), pp. 1–6, Oct 2015, arxiv.org/abs/1807.08165</span></cite></a>] proposed autonomic management systems with applications in smart-environments. Schbesberger et al [<a href="#ref"><cite><span>M. Schobesberger, et al. Designing Proactive Safety Systems for Industrial Workers Using Intelligent Mechanisms. Proceedings of the 15th International Conference on PErvasive Technologies Related to Assistive Environments. 2022, dl.acm.org/doi/10.1145/3529190.3534775</span></cite></a>] demonstrated increased industrial safety using intelligent mechanisms  
+   while Mattern [<a href="#ref"><cite><span>S. Mattern, A City Is Not a Computer: Other Urban Intelligences. Princeton University Press, 2021.</span></cite></a>] offered constructive insight into the language, data, and dashboards behind our modern, complex urban environments.
+</p>
+
+    <p>Previous studies have not integrated multiple systems into a complete and scalable solution. We assert that logically consistent unit operations [<a href="#ref"><cite><span>I. Bogost, Unit Operations: An approach to videogame criticism. MIT Press, 2008.</span></cite></a>] form a reliable basis for a stable system operation as a whole.</p>
+  </article>
+
+<!-- 
+
+template:
+[<a href="#ref"><cite><span>ReferenceGoesHere</span></cite></a>]
+
+
+
+To successfully solve a complex problem, it must be decomposed into provably correct unit operations.
+
+-->
+
+
+
+  <header id="pro"><p class="sub">04 Proposal</p><p></p></header>
+  <article><h3>System specification needed</h3>
+  <p> To better orchestrate the delivery and provisioning of relief services, we propose a "Scalable Recovery Algorithm" - a simple, modular, scalable, reusable, centralized support system utilizing innovative technologies. A fractal-like recursive method for deploying an emergency urban environment, the plans reliably handle from 1,000 to 100,000 people (survivors, displaced, evacuees, and recovery teams) per instance and can be rapidly deployed. We use the term <span class="emph"><i>algorithm</i></span> here because of the growing usage and understanding of its meaning, and to capture the nature of the plan as a step-wise, repeatable procedure.</p>
+  <p>Ideally, precise documentation should be created to specify an exact and provable design. A formal specification language known as TLA<sup>+</sup> (Temporal Logic of Actions) [<a href="#ref"><cite><span>L. Lamport, Specifying Systems: The TLA+ Language and Tools for Hardware and Software Engineers, Addison-Wesley, Boston, MA, USA, 2002.</span></cite></a>] enables the testing of complex designs prior to implementation. 
+  
+For example, engineers used TLA<sup>+</sup> [<a href="#ref"><cite><span>C. Newcombe, T. Rath, F. Zhang, B. Munteanu, M. Brooker, and M. Deardeuff, How Amazon Web Services Uses Formal Methods, in Communications of the ACM, April 2015, Vol. 58 No. 4, Pages 66-73, doi.org/10.1145/2699417</span></cite></a>] to specify the core of Amazon Web Services (AWS), enabling them to eliminate design errors and achieve high confidence in this critical, real-world system.
+</p><p>
+  
+  Likewise, computer modeling tools such as simulators enable checking an assortment of finely-detailed scenarios prior to real-world deployment. The goal for this project has always been to create a system design which has less flaws than the heuristic methods presently utilized (preferably <em>zero</em> flaws).</p>
+  <p>Find additional discussion on the term <i>algorithm</i> in the <a href="appendix.html#alg">appendix</a>.</p>
+  </article> <!-- Proposal -->
+
+
+  <header id="alg"><p class="sub">05 Algorithm</p><p></p></header>
+  <article><h3>A well-ordered methodology</h3>
+  <p>To solve a given problem, an algorithm follows a series of steps in a logical order. Our solution integrates new and existing technologies and connects them to a central system that can coordinate and support disaster relief efforts. Multiple instances of this system can launch simultaneously as needed. The system operates in three main stages: deployment, management, and closure. In the following sections, we describe the key features and functions of each stage.</p>
+  <pre class="alg"><code><!-- jWilliamDunn 2023.0427 -->
+<hr class="top">  <b>Algorithm 1:</b> Scalable Recovery
+<hr>  1. Identify problem &amp; needs;
+  2. Gather resources;
+  3. Transport resources;
+  4. Build infrastructure;
+  5. Populate;
+  6. <b>while</b> count &gt; T <b>do</b>:
+  7.    Maintain daily process;
+  8.    Adjust infrastructure;
+  9. Remove without trace;
+ 10. Return unused resources;
+<hr>
+</code></pre>
+
+    <p>The system adapts to the changing needs of the population by periodically adjusting the infrastructure. The main loop consists of two processes: expansion and contraction. Expansion occurs when the system detects new survivors or evacuees and provides them with shelter and services. Contraction occurs when the guests return to their original locations after the disaster recovery is complete. The following flowchart illustrates these processes:</p>
+    <figure>
+      <img src="img/FlowChart3.png" alt=" "/>
+    </figure>
+    <figcaption>Fig. 1. Flow chart of Algorithm 1</figcaption>
+  <span class="detail-2">
+    <p>We now discuss <i>Scalable Recovery</i> in detail below:</p>
+    <p>In <b>step 1</b>, <u>identify</u> the problem, the affected areas, and forecasted weather conditions, <u>obtain</u> an initial count of survivors/evacuees, <u>determine</u> all basic needs for this populous, and <u>locate</u> a feasible target site for the temporary city. A threshold <em>T</em> is set as a fraction of the populous. These factors are the inputs to the procedure.</p>
+    <p>In <b>step 2</b>, authorizations, permits, and sufficient resources are gathered including all transport units, building supplies, raw materials for factories, prefabricated components, robotics, food, water, etc.</p>
+    <p><b>Step 3</b>: Next, the resources are transported to the target site and arranged at the designated resource zone.</p>
+    <p><b>Step 4</b>: Next, the infrastructure is built and inspected including the zones, roads, factories, service modules, and residential units. At this point, the deployment phase is complete.</p>
+    <p><b>Step 5</b>: Next, the management phase begins and ingress may occur to populate the city.</p>
+    <p><b>Step 6</b>: While the population count is greater than threshold <em>T</em>, do the following steps 7 and 8:</p>
+    <p><b>Step 7</b>: Monitor and maintain the daily living process, provisioning as necessary.</p>
+    <p><b>Step 8</b>: Adjust infrastructure either upwards or downwards as the case may be. [Swift growth is mitigated by accurate forecasting in step 1.]</p>
+    <p><b>Step 9</b>: When the threshold is reached, the loop exits, egress occurs, and the closure phase begins. The instance is terminated by the orderly deconstruction of all infrastructure, removing all material, and leaving no trace.</p>
+    <p><b>Step 10</b>: Finally, all resources are returned to the point of origin for storage or redeployment.</p>
+  </span>
+  <p>Additional drill-down into each step of the process is forthcoming in a subsequent version of this document.</p>
+  </article name="A well-ordered methodology">
+
+
+
+
+
+  <header id="frm"><p class="sub">06 Framework</p><p></p></header>
+  <article><h3>System architecture</h3>
+  <p>
+  Defined as the footprint of the system, the framework includes elemental factors such as urban policy; master plan; site feasibility; climatic considerations; and total cost. Each of these are discussed below.
+  </p>
+  
+  <h3>Urban policy</h3>
+  <p>
+  Different deployment sites located around the country means that a multitude of local jurisdictions, regulations, and polices must be understood and followed prior to arrival. Ideally, these should be vetted long before a disaster occurs with agreements secured and confirmed. Policy overrides may be required if local governments are inoperable and immediate action is necessary. Examples might include temporary use of local resources such as water and electricity or use of existing properties or zones for alternative purposes.</p>
+
+  <h3>Master plan</h3>
+  <p>
+  As a scalable system, the city blueprint anticipates growth and transformation. The plan considers circulation, flexibility, sustainability, parcel layout, roads, modular expansion options, uniform design standards, and zoning. It begins with laying out a 15-degree sector of a <i class="emph">circular</i> temporary city. Each sector is self-sufficient and includes zones for supporting resource storage, factories, services, and residences.</p>
+  <p>In the figure below, the red dot represents the center of curvature. The radius of the outer residence arc is approximately 4,600 feet (1400 meters). The width of the roads is approximately 36 feet (11 meters). [Wikipedia: <a href="en.wikipedia.org/wiki/Circular_sector" target="_blank">Sector</a>]</p>
+  <figure>
+    <img src="img/master-light.png" class="imgborder darkswap" />
+  </figure>
+  <figcaption>Fig. 2. Master</figcaption>
+  
+  <p>The sectors can be connected into a complete circular city composed of 24 sectors, capable of supporting 100,000 people.</p>
+  <figure>
+    <img src="img/layout1-light.png" class="imgborder darkswap" alt=" "/>
+  </figure>
+  <figcaption>Fig. 3. Layout</figcaption>
+
+  <p>Alternatively, the self-similar sectors can be arranged in curved geometries to adapt to various topographic constraints. </p>
+  <figure>
+    <img src="img/alternate-light.png" class="imgborder darkswap" alt=" "/>
+  </figure>
+  <figcaption>Fig. 4. Alternating arrangement</figcaption>
+  <p>Below is an example of a minimal deployment zone footprint to accommodate up to 1,600 people. From left to right, this includes one resource zone, one services zone, and three residential zones. </p>
+  <figure>
+    <img src="img/minimal-light.png" class="imgborder darkswap" alt=" "/>
+  </figure>
+  <figcaption>Fig. 5. A minimal deployment</figcaption>
+  <p></p>
+  </article name="System Architecture">
+
+
+
+
+  <header><p class="sub">Framework</p><p></p></header>
+  <article><h3>Site feasibility</h3>
+  <p> To expedite deployment, feasible sites are identified in advance of disasters, however, this is not always possible. Considerations for feasible sites include but are not limited to: site topology, area availability for flexible expansion, soil analysis, natural vegetation, water accessibility, electrical grid proximity, weather patterns, existing structures, and wildlife concerns.</p>
+
+  <h3>Climatic considerations</h3>
+  <p> Deployment may face various challenges from weather and environmental conditions. These include snow, ice, excessive heat, flooding, winds, and debris from destruction. Moreover, a long-term deployment may have to endure several seasonal changes.</p>
+
+  <h3>Cost</h3>
+  <p> Many service costs may be covered in a manner similar to current practices. As this proposal is a service "gap filler", all additional costs of deployment and sustainability should be determined and factored based on populous count.</p>
+  </article name="Site feasibility">
+
+
+
+
+  <header id="inf"><p class="sub">07 Infrastructure</p></header>
+  <article><h3>Elemental factors</h3>
+    <p> This section addresses fundamental needs such as communication; public safety; transport methods and accessibility; distribution of energy &amp; water; waste management; integrated energy re-usability; and sustainability. In the figure below, parcels are mapped to areas of the arc blueprint. Observe the order from left to right of the resource area (at the core of the circle), the designated service center area, and finally, the modular housing area. Also note the estimates for numbers of people. For example, a fully populated sector can accommodate up to 7,744 people. A more comfortable level would be 4,166 with some areas designated for green-space parks.</p>
+  <figure>
+    <img src="img/Infrastructure-light.png" class="imgborder darkswap zoom" alt=" "/>
+  </figure>
+  <figcaption>Fig. 6. Infrastructure organization (click or tap to zoom)</figcaption>
+  <p></p>
+
+  <h3>Communication</h3>
+  <p>Integral to all deployments is the ability to communicate with one another. At all times, people need to know the whereabouts of their loved ones. This is most punctuated during and following a disaster. Further, it is important to understand the status of resources on a day-by-day, even hour-by-hour, basis. If depleted, a basic necessity might cause a serious ripple effect, especially at scale. Thus, a robust communications network is essential to the operations and support of the environment.</p>
+
+  <h3>Public safety</h3>
+  <p>Public safety is a crucial aspect of disaster response and recovery. It ensures the protection of lives and property from further harm and facilitates the restoration of normalcy. Distributed evenly throughout the city, policing and fire control are two key components of public safety. Policing helps to prevent and respond to crimes, maintain law and order, and coordinate with other agencies and stakeholders. Fire control helps to prevent and extinguish fires, rescue trapped or injured people, and mitigate hazards and risks. Together, they provide a stable and secure environment for the recovery and rebuild process.</p>
+
+
+  <h3>Transportation</h3>
+
+    <p>Transportation is another vital element. It enables the movement of people, goods, and services to and from the affected areas. It also supports the operations of an emergency urban environment by facilitating the delivery of relief supplies, the evacuation of casualties, the deployment of personnel and equipment, and the access to essential facilities and resources. Transportation helps to improve the efficiency and effectiveness of the recovery and rebuild process by reducing delays, costs, and risks.</p>
+
+  <h3>Energy</h3>
+
+    <p>Energy is another essential factor of disaster response and recovery. It provides the power and fuel for the functioning of an emergency urban environment. It enables the operation of communication systems, lighting systems, heating and cooling systems, robotic devices, and other critical infrastructure. Energy also supports the recovery and rebuild process by allowing the use of machinery, tools, and vehicles for clearing debris, repairing damage, and constructing new structures. Energy helps to enhance the quality and comfort of life for the survivors and responders in the aftermath of a disaster.</p>
+
+
+  <p>Emergency services systems need reliable and resilient energy sources. Disasters or terrorist attacks can disrupt or destroy conventional power plants, transmission lines and fuel supplies. Distributed renewable energy systems, such as wind, solar and geothermal, can provide independent and uninterruptible power in such situations. They do not depend on imported or scarce fuels, and their output can be predicted and stored for later use. For example, excess wind or solar power can pump water into reservoirs for hydropower generation. These features make renewable energy systems more robust and suitable for the Proximity Algorithm, which we are researching to optimize energy supply and demand during emergencies. This is a huge challenge that requires multidisciplinary solutions at various scales.</p>
+
+  <h3>Water</h3>
+
+    <p>Water is a fundamental necessity of disaster response and recovery. It provides the basic needs of hydration, sanitation, and hygiene for the survivors and responders in an emergency urban environment. It also supports the recovery and rebuild process by enabling the cleaning of contaminated areas, the irrigation of crops, and the generation of hydroelectricity. Water helps to prevent the spread of diseases, the loss of lives, and the deterioration of living conditions in the wake of a disaster.</p>
+
+  <h3>Waste</h3>
+
+    <p>Waste is a major challenge of disaster response and recovery. It refers to the unwanted or unusable materials that are generated by the disaster itself or by the relief activities. Waste can include debris, rubble, garbage, sewage, hazardous substances, and human or animal remains. Waste management is the process of collecting, sorting, transporting, treating, and disposing of waste in an emergency urban environment. It helps to reduce the environmental and personal impacts of waste, such as pollution, contamination, odors, and pests. Waste management also helps to facilitate the recovery and rebuild process by clearing space, recycling materials, and creating jobs.</p>
+  </article name="Elemental factors">
+
+
+
+  <header id="arc"><p class="sub">08 Architecture</p></header>
+  <article><h3>Design overview</h3>
+    <p>The temporary city instance consists of three main components: centralized resource centers, distributed service centers, and secure compartmentalized housing. The centralized resource centers store and distribute essentials such as food, water, and other supplies. The distributed service centers are larger buildings that offer communal spaces for social interaction and mutual aid. The secure compartmentalized housing are smaller units that can be linked together to form clusters. They provide privacy and shelter for the survivors. </p><p> The design of the temporary city instance incorporates innovative materials and techniques that meet the criteria of emergency environment structures. These structures are non-polluting, reusable, quick to assemble, light weight to transport, and scalable to handle different disaster scenarios. They also balance the comfort and safety of the survivors with the need to avoid long-term dependency.</p>
+  <h3>Construction</h3>
+  <p>All building units are modular and can be quickly manufactured and assembled on-site. All components are recyclable and nonpolluting. The large service modules are designed for ultra-fast assembly with modular outer walls, a tensile fiberglass roof, and configurable spaces. Where possible, construction is automated by robotics with drone assistance.</p>
+  </article name="Design overview">
+
+
+
+
+  <header id="src"><p class="sub">09 Architecture</p></header>
+  <article><h3>Resource centers</h3>
+    <p>Forming the physical central core of the city is a space for support systems including resource storage, factory modules, energy generation, and waste removal/recycling. This zone provides all resources for the sector it is assigned. Factories are initialized with raw materials and produce refined components and assemblies. Power plants distribute energy to support the activity of all systems, services, and residences. The larger sector areas beyond the residential zones can be utilized for resource storage or processing when extra space is required.</p>
+  <figure>
+    <img src="img/support-map.png" class="imgborder" alt=" "/>
+  </figure>
+  <figcaption>Fig. 7. Supporting resources located within the city sector</figcaption>
+  <p></p>
+  </article name="Resource centers">
+
+
+  <header id="srv"><p class="sub">10 Architecture</p></header>
+  <article><h3>Service modules</h3>
+<p>Each sector includes a zone for three service modules situated centrally, as indicated in the figure below, between the supporting resource center and the residential arcs. The service modules include a flexible floor plan with each covering an area of 72,464 sqft (6732 square meters), measuring 453 ft by 160 ft (138m x 49m). For comparison, an average Costco warehouse store is twice the size at 144,000 sqft. Other features include: ultra-fast assembly, modular outer walls, tensile fiberglass roof, configurable interior spaces.</p>
+  <figure>
+    <img src="img/services-zone.png" class="imgborder"  alt=" "/>
+  </figure>
+  <figcaption>Fig. 8. Zone for service modules within the city sector</figcaption>
+  <p>In addition to the general services module, adjacent modules provide additional services such as urgent care and veterinary.</p>
+  <figure>
+    <img src="img/services-map.png" class="imgborder"  alt=" "/>
+  </figure>
+  <figcaption>Fig. 9. General services module location</figcaption>
+<p>The general service module acts as the ingress point for guests when the sector is declared open for operation. In the figure below for example, people arrive by bus and enter the upper left side of the module. After registering with the system, they are assigned to a residential unit, and provided with a palette of options, many of which are within close proximity. Men's and women's facilities are adjacent to the entrance. Just beyond the check-in area is a food court, clothing bank, and hair salon. Deeper within the module are additional community services such as child-care, counseling, computer access points, postal services and mailboxes, high-definition communication centers, and exercise facilities.</p>
+  <figure>
+    <img src="img/services-floorplan.png" class="imgborder zoom" alt=" "/>
+  </figure>
+  <figcaption>Fig. 10. Service module floor plan (click or tap to zoom)</figcaption>
+  <p>On the upper right-hand side of the services unit is an area where people can queue for outbound transportation. This transport can be to the residential area or back to the areas being reconstructed. The image below depicts a tensile fiberglass roof in use at Denver International Airport.</p>
+  <figure>
+    <img src="img/DIA.png" class="imgborder"  alt=" "/>
+  </figure>
+  <figcaption>Fig. 11. Tensile fiberglass roof</figcaption>
+  <p></p>
+  </article name="Service modules">
+
+
+
+  <header id="res"><p class="sub">11 Architecture</p></header>
+  <article><h3>Residential units</h3>
+  <p>Minimalistic and smart residential units are based on a 12' x 12' (144 sqft) foot print. Each unit is designed for two adults. An expansion unit,  can comfortably house up to three children. Two units (pictured below) measures 12' x 24' (288 sqft)<sup>*</sup>. The units can be assembled in a two-story option or interlinked (post-assembly) for additional space. These modular units can be quickly manufactured and assembled on-site. All components are recyclable and nonpolluting. </p>
+  <p>* For comparison, a typical FEMA trailer measures 14' by 22' (308 sqft) [Wikipedia: <a href="https://en.wikipedia.org/wiki/FEMA_trailer" target="_blank">FEMA trailer</a>].</p>
+  <figure>
+    <img src="img/residential-floorplan2.png" class="imgborder zoom" alt=" "/>
+  </figure>
+  <figcaption>Fig. 12. Residential units (click or tap to zoom)</figcaption>
+
+  <p>The design of the residential units is inspired by the efficiency hotel chain <i>Yotel</i>. An example of the interior layouts from the London location are depicted in the images below. The primary design enhancement to the units shown here is the expansion and configuration options to accommodate larger families and longer stays.</p>
+
+  <figure>
+    <img src="img/YotelLondon.png" class="imgborder zoom" alt=" "/>
+  </figure>
+  <figcaption>Fig. 13. Images of a 12’ x 8.5’ unit at Yotel in London (click or tap to zoom)</figcaption>
+  
+  <h3>Configuration</h3>
+  <p>Eight units can be connected into a <i>J configuration</i>. When two mirrored J configurations (16 units) are linked and arranged in the formation as indicated in the figure below, a small community courtyard effect is created. Notice the courtyard is the shape of the letter H, thus this arrangement is called an <i>H configuration</i>. This particular example arrangement can accommodate 20 adults with 18 children on a single-level. </p>
+  <figure>
+    <img src="img/residential-linkedg.png" class="imgborder" alt=" "/>
+  </figure>
+  <figcaption>Fig. 14. 16-way arrangement: H configuration</figcaption>
+
+  <p>A plurality of the <i>H configurations</i> can be arranged along the arc sectors of the city blueprint.</p>
+  <figure>
+    <img src="img/residential-map.png" class="imgborder" alt=" "/>
+  </figure>
+  <figcaption>Fig. 15. Residential units located in the city sector</figcaption>
+  
+  <p>Below is a rendering of an experimental, alternative arrangement of the <i>H configuration</i> forming a recursive H configuration. This was rendered using p5.js. [Sketch: <a href="https://openprocessing.org/sketch/934096" target="_blank">recursiveH</a>]</p>
+  <figure>
+    <img src="img/JModule7.png" class="imgborder" alt=" "/>
+  </figure>
+  <figcaption>Fig. 16. Residential units arranged in a recursive configuration</figcaption>
+   <p>We experimented with module configurations to determine an optimal layout. Below is a sampling of several alternative trials. </p>
+  <figure> <!-- style="max-width:400px" -->
+    <img src="img/configurations2-light.png" class="imgborder darkswap" alt=" " />
+  </figure>
+  <figcaption>Fig. 17. Experimental housing module configurations</figcaption>
+  <p>We also explored hexagonal-geometry modules and configurations.</p>
+  <figure> <!-- style="max-width:370px" -->
+    <img src="img/altHex-light.png" class="imgborder darkswap" alt=" " />
+    <!-- note: draw.io start with hex of 240 width x 210 height -->
+  </figure>
+  <figcaption>Fig. 18. Hexagonal housing module configurations</figcaption>
+
+    <p>Find additional preliminary visualizations of the city architecture in the <a href="appendix.html#sav">appendix</a>.</p>
+  </article name="Residential units">
+
+
+
+
+  <header id="mgt"><p class="sub">12 Management</p></header>
+  <article><h3>Maintenance</h3>
+<p>The entire system status can be monitored and managed with ease including deployment; setup; maintenance; provisioning (such as food, clothing, counseling, childcare, education, transportation, health &amp; policing services); tear down; and cleaning &amp; storage of the system components between uses. </p>
+  <figure>
+    <img src="img/console-light.png" class="imgborder darkswap" alt=" "/>
+  </figure>
+  <figcaption>Fig. 19. Early sketch of the management console</figcaption>
+  
+<p>Below is an example visualization of the management console. The present view is indicating all security-related issues, gray-coded by severity. An authorized manager would be able to access this screen and swipe left or right for the maintenance, inventory, or other views. Tapping on any arc would open an additional view to present or update detailed status. An interactive, color version is under development [Website: <a href="https://openprocessing.org/sketch/820777" target="_blank">visual</a>].</p>
+  <figure>
+    <img src="img/manage-light.PNG" class="zoom darkswap" alt=" "/>
+  </figure>
+  <figcaption>Fig. 20. Visualization of the management console (click or tap to zoom)</figcaption>
+
+  <p>Find example management status levels in the <a href="appendix.html#mgt">appendix</a>.</p>
+  
+<h3></h3>
+<p>The system ensures orderly distribution of resources with a smart allocation algorithm. The computer tracks the usage and inventory of supplies and reorders them automatically. Families receive identifier smart cards that prevent looting and theft. The cards are password protected and easy to cancel if stolen. The system can also locate unauthorized users with tracking enabled from the security management screen. The algorithm provides clear instructions for every step of the process: set up, distribution, restocking, and tear down. The master manual covers all activities and is available online, audio, and printed format.</p>
+
+  <h3>Smart city</h3>
+    <p>Intelligent mechanisms, smart control, and process improvement are crucial components in the development of smart cities. The intersection of machine learning, knowledge engineering, and simulation can facilitate the creation of such mechanisms. Software mechanisms can be developed to manage the complex systems that make up a smart city, enabling efficient control and optimization. Subject matter expertise can be captured and structured for retrieval and understanding by future generations of humans and computers through the use of knowledge engineering techniques. Large language models such as GPT can provide leverage by enabling natural language processing, semantic understanding, and context-awareness. These technologies can help to automate decision-making processes and enable rapid analysis of large amounts of data, leading to improved resource allocation, enhanced citizen services, and better urban planning.</p>
+    
+    <p>Each deployment event (of the Proximity Algorithm) will yield newly learned experience and knowledge which must be integrated with the existing repository. How can operational best-practices be automatically identified, adapted, and reused? How can we automatically structure, organize, and update information and procedures for future iterations.</p>
+    
+    <p>HCI Integration:
+advancing the state-of-the-art in communicating knowledge using multimodal natural user interfaces. Rather than complexifying the user interface, how can we simplify, abstract, and ameliorate the interactions between humans and computers?</p>
+
+  </article name="Management">
+
+
+
+  <header id="cls"><p class="sub">13 Closure</p></header>
+  <article><h3>System shutdown</h3>
+  <p>The temporary city instance shuts down when it reaches the minimum population threshold. The system relocates any remaining survivors to other temporary shelters in the affected areas. Then, it deconstructs all infrastructure in an orderly manner and transports all material from the site. The system ensures that the location is clean and free of any traces of the instance. Finally, it returns all resources to their source origins for inspection, storage, and future use. </p>
+  </article name="Closure">
+
+
+  <header><p class="sub">Adaptability</p></header>
+  <article><h3>Future application</h3>
+  <p>Future uses of the "Scalable Recovery Algorithm" include <u>assisting</u> displaced war veterans, refugees, or immigrants, <u>adapting</u> to other cultures around the globe, and <u>ending</u> general homelessness completely. A closed version of the system can be used off-world in orbit, on the Moon, Mars, or other space colonies.</p>
+  </article name="Adaptability">
+  
+
+  <!-- references are automatically populated using the citeRef module -->
+  <header id="ref"><p class="sub">14 Research</p><p></p></header>
+  <article><h3>References</h3>
+    <ol class="refs"></ol>
+  </article>
+
+
+  <header><p class="sub">Credits</p><p></p></header>
+  <article><h3>Primary authors</h3>
+  <p style="font-size:14px;">Alyce N. Hoggan is the executive director, co-founder, and principal investigator of kynamatrix Research Network. She holds a Master of Design from Carnegie Mellon University and a Bachelor of Fine Arts in visual communication design from Kent State University.</p>
+  <p style="font-size:14px;">J. William Dunn is a systems architect, software research engineer, and open source contributor. He received his master and bachelor degrees in computer science from Arizona State University.</p><!-- jWilliamDunn 2023.0309 -->
+  <span class="detail-2">
+  <h5 style="margin-bottom:0;">Acknowledgment</h5>
+  <p style="font-size:14px;">Special thanks to:<br>
+  Volunteers nationwide, for expert advice<br>
+  </span>
+  </p>
+    <p style="font-size:14px;">Find additional recognition in the <a href="appendix.html#ref">appendix</a></p>
+  </span>
+  </article>
+
+   <p></p>
+</main>
+<figcaption class="foot">Release v0.1.0 2023.0510 &copy;2023 kynamatrix Research Network</figcaption>
+
+
+                                                                            <!--
+Document revision log:
+
+[2023.0510] Minor updates
+[2023.0505] Format overhaul main, appendix, and add citeRef
+[2023.0131] Editing pass / dark mode
+[2021.0507] Add flowchart graphic
+[2020.0718] JModule image and usmgt map
+[2019.0721] Initial technical report version
+[2017.1119] Preliminary technical report planning
+[2014.0630] Component studies
+[2011.1121] Architectural research
+[2010.0215] System presentation to gatesfoundation.org
+[2009.1106] Initial research proposal to Harvard University
+[2007.0928] Newsletter article
+[2006.1031] Proposal letter to US president
+[2006.0829] Conceptual draft
+[2002.1016] Genesis
+
+
+
+Colophon:
+font { Tinos, Merriweather Sans, IBM Plex Mono }
+color { dark mode, light mode }
+images { dark/light versions if possible }
+layout { desktop:grid, mobile:no grid }
+test { desktop, mobile }
+js { commonNav, p5kit, dark, ring, citeRef }
+                                                                            -->
+
+
+<script type="text/javascript" src="dark.js"></script>
+<script type="text/javascript" src="ring.js"></script>
+<script type="text/javascript" src="citeref.js"></script>
+<script>
+citeRef.create();
+const zoomableImages = document.querySelectorAll('.zoom');
+zoomableImages.forEach(image => {
+  image.addEventListener('click', () => {
+    image.classList.toggle('zoomed');
+  });
+});
+</script>
+</body>
+</html>

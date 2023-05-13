@@ -1,0 +1,372 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charSet="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Proximity algorithm supplement</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="commonNav.css">
+  <script type="text/javascript" src="commonNav.js"></script>
+  <script type="text/javascript" src="p5kit.js"></script>
+  <!-- link rel="stylesheet" href="highlight/styles/nord.min.css">
+  <script src="highlight/highlight.min.js"></script -->
+  <script>"use strict";function $i(_){return document.getElementById(_);}</script>
+</head>
+<body>
+
+<section>
+<img src="img/static.png">
+</section>
+
+<main label="grid" style="/* grid */" onclick="//grid">
+<!--
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+-->
+
+
+<div>&nbsp;</div>
+<h1>Proximity algorithm</h1>
+
+  <header><p class="sub"></p><p class="sub"></p></header>
+  <article><h3>Supplemental information</h3>
+  <p>Contents:</p>
+  <span class="indexA">
+  <p><span>A1</span> Examples of <a href="#ers">current relief services</a></p>
+  <p><span>A2</span> List of types of <a href="#dis">natural disasters</a></p>
+  <p><span>A3</span> Background on the term <a href="#alg"><i>algorithm</i></a></p>
+  <p><span>A4</span> Additional <a href="#alg">architectural visualizations</a></p>
+  <p><span>A5</span> Examples of <a href="#mgt">management status levels</a></p>
+  <p><span>A6</span> Additional <a href="#ref">sources and acknowledgement</a></p>
+  </span>
+  <p></p>
+  </article>
+
+
+
+
+
+  <header id="ers"><p class="sub">A1 Current solutions</p><p></p></header>
+  <article><h3>Example relief services.</h3>
+<p>
+FEMA (Federal Emergency Management Agency): FEMA is a U.S. government agency that provides assistance to those affected by natural disasters. FEMA offers resources and tools to help individuals and communities prepare for and recover from natural disasters. This includes assistance with debris removal, temporary housing, and other emergency needs. [Website: <a href="https://www.fema.gov" target="_blank">FEMA</a>]</p>
+
+<p>
+The Red Cross: The Red Cross is an international organization that provides assistance during natural disasters. The organization provides emergency shelter, food, and supplies to those affected by natural disasters. They also offer resources to help individuals and communities prepare for natural disasters. [Website: <a href="https://www.redcross.org" target="_blank">Red Cross</a>]</p>
+
+<p>
+Local Emergency Management Agencies: Many cities and counties have emergency management agencies that can provide information and assistance during natural disasters. These agencies may have resources and information specific to the area in which you live.</p>
+
+<p>
+Non-profit organizations: There are several non-profit organizations that provide assistance during natural disasters, such as Team Rubicon, NVOAD, and All Hands and Hearts. These organizations often have volunteers on the ground who can help with logistics and provide suggestions on next steps. [Websites: <a href="https://teamrubiconusa.org" target="_blank">TR</a> | <a href="https://nvoad.org/about-us" target="_blank">NVOAD</a> | <a href="https://www.allhandsandhearts.org/" target="_blank">AH&amp;H</a>] 
+</p>
+
+<p>
+The Salvation Army - The Salvation Army provides emergency financial assistance to families affected by disasters, including those who are homeless. The amount of assistance provided varies based on the specific disaster and the individual circumstances of each family. The assistance provided by The Salvation Army is in the form of grants and does not need to be paid back. [Website: <a href="https://www.salvationarmyusa.org" target="_blank">Salvation Army</a>]</p>
+
+<p>
+
+The National Low Income Housing Coalition - The NLIHC provides emergency financial assistance to families affected by disasters, including those who are homeless. The amount of assistance provided varies based on the specific disaster and the individual circumstances of each family. The assistance provided by the NLIHC is in the form of grants and does not need to be paid back. In general, the assistance provided is meant to cover the basic needs of families who are displaced from their homes due to a natural disaster, such as temporary shelter, food, and clothing. [Website: <a href="https://nlihc.org" target="_blank">NLIHC</a>]</p>
+
+<p>
+There have been some notable instances of large-scale financial assistance provided to families in the aftermath of natural disasters in the past ten years. For example, after Hurricane Harvey hit Texas in 2017, the Federal Emergency Management Agency (FEMA) provided more than $1.4 billion in housing assistance to more than 180,000 households, many of which were homeless or displaced due to the storm. Additionally, the American Red Cross and other organizations provided financial assistance to families affected by the storm.
+</p><p>
+Similarly, after Hurricane Maria devastated Puerto Rico in 2017, FEMA provided more than $1 billion in housing assistance to families affected by the storm, including many who were homeless or displaced. Other organizations, such as the Salvation Army and the NLIHC, also provided financial assistance to families affected by the storm.
+  </p>
+  </article>
+  
+
+
+
+  <header><p class="sub">Current solutions</p><p></p></header>
+  <article><h3>Additional background.</h3>
+<p>
+Hurricane Katrina was a turning point for emergency management in the United States, leading to many changes in practices and policies. Here are some specific examples:
+</p><p>
+Creation of FEMA as an independent agency: In 2006, the Post-Katrina Emergency Management Reform Act [<a href="#ref"><cite><span>Post-Katrina Emergency
+Management Reform Act of 2006, congress.gov/bill/109th-congress/senate-bill/3721/text</span></cite></a>] created the Federal Emergency Management Agency (FEMA) as an independent agency with increased authority and resources to respond to disasters.
+</p><p>
+National Response Framework: FEMA also developed the National Response Framework (NRF), which is a comprehensive guide for how the federal government, state and local governments, and private sector organizations work together during disasters. [<a href="#ref"><cite><span>National Response Framework. Homeland Security. US Government Printing, 2008.</span></cite></a>]
+</p>
+
+<p>
+Unified Command System: The NRF established a Unified Command System, which ensures that all responding agencies work together under a common set of objectives and priorities.
+</p>
+
+<p>
+Pre-positioning of resources: In response to the delayed assistance to survivors of Hurricane Katrina, FEMA and other agencies began strategic placement of resources, such as food, water, personnel, equipment, and supplies, in advance of disasters. Pre-positioning can also include activities such training response personnel and coordinating with local and state emergency management agencies. [Website: <a href="https://www.fema.gov/emergency-managers/national-preparedness/frameworks/urban-search-rescue" target="_blank">US&amp;R</a>]
+</p>
+
+<p>
+Improved communication: In the aftermath of Katrina, there were significant breakdowns in communication between responding agencies. To address this, the government established interoperable communication systems to improve communication between responding agencies.
+</p>
+
+<p>
+Training and exercises: The government has increased its focus on training and exercises for emergency managers and responders to better prepare for disasters.
+</p>
+
+<p>
+Increased focus on community resilience: There is now a greater focus on building community resilience, including programs to help individuals and communities prepare for disasters, and efforts to increase infrastructure resilience.
+</p>
+
+<p>
+Improved evacuation planning: One of the major issues during Hurricane Katrina was the evacuation of the population. In response, there have been improvements in evacuation planning, including the use of technology to track evacuees and to provide more accurate information to the public.
+</p>
+
+<p>
+Enhanced focus on vulnerable populations: The response to Hurricane Katrina highlighted the vulnerability of certain populations, including the elderly, disabled, and low-income individuals. There has since been an increased focus on addressing the needs of vulnerable populations during disasters.
+</p>
+
+<p>
+Increased funding for disaster response and recovery: Following Hurricane Katrina, the federal government allocated significant funding to disaster response and recovery efforts, including to rebuilding infrastructure and providing aid to affected individuals and communities.
+</p>
+
+<p>
+National Incident Management System: NIMS was established in 2004 but was widely adopted after Hurricane Katrina. It provides a standardized approach to managing incidents, including the development of incident command systems, operational protocols, and the use of common terminology across different agencies and jurisdictions. [Website: <a href="https://www.fema.gov/emergency-managers/nims" target="_blank">NIMS</a>]
+</p><p>
+Greater emphasis on private sector involvement: The response to Hurricane Katrina highlighted the important role of the private sector in disaster response and recovery. Since then, there has been an increased emphasis on involving private sector organizations in planning and response efforts, including through public-private partnerships.
+</p><p>
+In the wake of Hurricane Katrina, significant changes were made to emergency management practices and policies. These changes have led to a more coordinated and effective approach to disaster response and recovery. There is now a greater emphasis on preparedness, resilience, and community involvement, which has helped to better prepare the U.S. for future disasters.
+  </p>
+
+  <!--The National Weather Service: The National Weather Service provides weather forecasts and warnings for severe weather events. This can include warnings for potential natural disasters like hurricanes, tornadoes, and floods.
+<br><br> -->
+</article>
+
+
+
+<header id="dis"><p class="sub">A2 Manifest</p><p></p></header>
+  <article><h3>Types of natural disasters</h3>
+  <p><b>Hurricanes and tropical storms:</b> can cause widespread flooding, wind damage, and storm surges that can destroy homes and displace entire communities.</p>
+  <p><b>Earthquakes:</b> can cause buildings to collapse and lead to widespread damage, leaving many people without a home.</p>
+  <p><b>Floods:</b> can result in the destruction of homes and infrastructure, leaving people homeless.</p>
+  <p><b>Wildfires:</b> can cause significant damage to homes and communities, forcing people to evacuate and find alternative housing.</p>
+  <p><b>Tornadoes:</b> can cause severe damage to homes and communities, leaving people without a place to live.</p>
+  <p><b>Landslides and mudslides:</b> can destroy homes and infrastructure, leaving people homeless.</p>
+  <p><b>Tsunamis:</b> can cause widespread destruction, including the destruction of homes and infrastructure, leaving many people without a place to live.</p>
+  <p><b>Volcanic eruptions:</b> can cause widespread damage to homes and communities, leaving people without a place to live.</p>
+  <p><b>Drought:</b> can cause significant damage to crops and lead to the displacement of communities that rely on agriculture for their livelihoods.</p>
+  <p><b>Cyclones:</b> (also known as typhoons or hurricanes) can cause significant damage to homes and infrastructure, resulting in displacement of communities and leaving people without shelter.</p>
+  <p><b>Winter storms:</b> Severe events with heavy snow, ice, and strong winds can damage homes and cause power outages, making them uninhabitable and forcing people to seek alternative shelter.</p>
+  <p><b>Extreme heat waves:</b> can cause heat-related illnesses and death, especially for vulnerable populations without access to air conditioning and proper shelter.</p>
+  <p><b>Extreme cold:</b> (including polar vortexes) can cause damage to homes and infrastructure, leading to displacement of communities and leaving people without shelter.</p>
+  <p><b>Epidemics and pandemics:</b> can result in the loss of livelihoods and housing due to economic disruption and job loss, forcing people to become homeless.</p>
+
+  </article>
+  
+  
+  
+
+  <header id="alg"><p class="sub">A3 Definition</p><p></p></header>
+  <article><h3>More background on the term algorithm</h3>
+    <p>According to Skiena [<a href="#ref"><cite><span>S. Skiena, The Algorithm Design Manual. Springer, 2008, algorist.com</span></cite></a>], "An algorithm is a procedure to accomplish a specific task." "There is a fundamental difference between <i>algorithms</i>, which always produce a correct result, and <i>heuristics</i>, which may usually do a good job but without providing any guarantee." </p>
+
+    <p> Erickson [<a href="#ref"><cite><span>J. Erickson, Algorithms, 2019, jeffe.cs.illinois.edu/teaching/algorithms</span></cite></a>] adds "An algorithm is an explicit, precise, unambiguous, mechanically-executable sequence of elementary instructions, usually intended to accomplish a specific purpose."</p>
+
+    <p>In contrast to the rigor of 'algorithm,' the term <i>heuristic</i> is defined as "any approach to problem solving that employs a practical method that is not guaranteed to be optimal, perfect, or rational, but is nevertheless sufficient for reaching an immediate, short-term goal or approximation." [Wikipedia: <a href="https://en.wikipedia.org/wiki/Heuristic" target="_blank">Heuristic</a>]</p>
+<p>Algorithms can be formally specified using Temporal Logic of Actions. Learn more here: <a href="https://lamport.azurewebsites.net/tla/tla.html" target="_blank">TLA<sup>+</sup></a></p>
+  </article>
+
+
+  <!-- 
+  &mdash;
+  
+  <a href="#ref"><cite><span>reference goes here</span></cite></a>
+  
+
+
+https://bing.com/search?q=algorithm+definition
+https://www.dictionary.com/browse/algorithm
+https://www.merriam-webster.com/dictionary/algorithm
+https://en.wikipedia.org/wiki/Algorithm
+https://www.techtarget.com/whatis/definition/algorithm
+
+  -->
+
+
+
+
+  <header id="sav"><p class="sub">A4 Framework</p><p></p></header>
+  <article><h3>System architecture</h3>
+  <p>
+  Additional volume study visualizations of the scalable recovery algorithm.
+  </p>
+  <figure>
+    <img src="img/JMod2lvl.PNG" class="imgborder"  alt=" "/>
+  </figure>
+  <figcaption>Fig. 21. Two-level residential module configuration</figcaption>
+
+  <figure>
+    <img src="img/minimal-3d.png" class="imgborder"  alt=" "/>
+  </figure>
+  <figcaption>Fig. 22. A minimal deployment with residential modules in the foreground</figcaption>
+
+  <figure>
+    <img src="img/max-3d2.png" class="imgborder"  alt=" "/>
+  </figure>
+  <figcaption>Fig. 23. One quarter deployment with residential modules in the foreground</figcaption>
+  <p>The visualizations above were rendered using the Processing Development Environment. [Website: <a href="https://processing.org/environment" target="_blank">PDE</a>]</p>
+  
+  <p>The following figure provides a sense of scale for components of the Proximity city layout. The upper part of the image contains a rendering of two service modules along with three partial arcs of residential modules. For comparison, the lower part of the image contains an American football field, an average-sized automobile, a 1 acre plot of land, a 1/4 acre plot (10,890 sqft), and a 7,750 square-foot residential plot containing a 2,000 sqft tri-level home.</p>
+  <figure>
+    <img src="img/scale-light.png" class="darkswap zoom2"  alt=" "/>
+  </figure>
+  <figcaption>Fig. 24. Service and residential modules compared to other areas (click or tap to zoom)</figcaption>
+  <p></p>
+  
+  </article>
+
+
+
+  <header id="mgt"><p class="sub">A5 Management</p></header>
+  <article><h3>Example status levels</h3>
+<style>
+dl dd { margin:0; }
+dl dt { font-weight: bold; }
+.dark dl dd{ color:#bbb; }
+dl { display: grid; grid-template-columns: 0.2fr 1fr; gap: 9px;}
+</style>
+<p>The management console provides a interactive view on the spectrum of operations in each sector of the city. In the examples below, status is broken into four distinct levels.</p>
+
+  <p>Maintenance operations status levels:</p>
+  <dl>
+    <dt>Normal</dt><dd> everything is functioning as it should be, and there are no issues or problems with the systems in the sector.</dd>
+    <dt>Warning</dt><dd> a potential problem or issue needs attention but is not yet critical. Action should be taken to prevent the issue from escalating to a more severe level.</dd>
+    <dt>Error</dt><dd> a problem or issue requires immediate attention. The systems in this sector may be partially or completely down, and action should be taken to address the problem as soon as possible.</dd>
+    <dt>Critical</dt><dd> a severe problem or issue requires immediate attention. The systems in this sector are likely to be completely down or unusable, and urgent action should be taken to address the problem.</dd>
+  </dl>
+
+  <p>Security status levels:</p>
+  <dl>
+    <dt>Normal</dt> <dd>everything is safe and secure. There are no known security threats or breaches, and all security measures are functioning as expected.</dd>
+    <dt>Alert</dt> <dd>a potential security threat or vulnerability has been identified. Action should be taken to investigate the issue and mitigate any risks.</dd>
+    <dt>Warn</dt> <dd> a security threat or vulnerability has been identified and requires immediate attention. Action should be taken to address the issue and prevent any further harm.
+    </dd>
+    <dt>Critical</dt> <dd> a severe security threat or breach requires immediate action. The system may be compromised or under attack, and urgent measures should be taken to contain the issue, prevent further damage, and restore security.
+    </dd>
+  </dl>
+
+  <p>Inventory status levels:</p>
+  <dl>
+    <dt>Normal</dt> <dd>the inventory is fully stocked, and there are no shortages or excesses. The inventory is within the expected levels, and there is no need for immediate action.</dd>
+    <dt>Over</dt> <dd>inventory levels have exceeded the expected range, and there is an excess of items in stock. Action will be taken to move the excess inventory, find alternative uses, or adjust the ordering and stocking procedures to avoid future overstocking.</dd>
+    <dt>Low</dt> <dd>inventory levels have fallen below the normal range and may lead to depletion soon. Corrective action is required to replenish the inventory to avoid running out of stock.</dd>
+    <dt>Out</dt> <dd>inventory levels have depleted entirely, and there are no more items available for use. Immediate action must be taken to replenish the inventory to prevent a loss or delay in operation.</dd>
+  </dl>
+
+
+  <p>Construction status levels:</p>
+  <dl>
+    <dt>Normal</dt> <dd>construction has been finished, and the sector is ready to be used or occupied.</dd>
+    <dt>Plan</dt> <dd>construction is proceeding as planned, and there are no significant issues or delays. The sector is on track, and progress is being made as expected.</dd>
+    <dt>Delay</dt> <dd>construction has fallen behind schedule due to unforeseen circumstances such as weather, supply chain issues, or labor shortages. Action should be taken to identify the cause of the delay and find ways to catch up on lost time.</dd>
+    <dt>Stall</dt> <dd>construction has come to a stop due to significant issues such as safety concerns, resource problems, or legal issues. Action should be taken to resolve the underlying issues and restart construction as soon as possible.</dd>
+  </dl>
+
+<p></p>
+</article>
+
+
+<!-- 
+    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+     /\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/
+    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+  <header><p class="sub">Sub-category</p></header>
+  <article><h3>Heading</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eros quam, accumsan eu ligula varius, bibendum ultrices libero. Donec mollis ultrices lacinia. Aliquam id massa non tortor volutpat aliquet et nec lorem.</p>
+  </article name="Sub-category">
+
+
+
+  <p>Find additional discussion on the term algorithm <a href="new05-d2.html#alg">here</a></p>
+
+
+
+    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+     /\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/-/\-\/
+    |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!-- 
+Additional sources:
+
+Morris, Janel [ed]. Disaster planning. Detroit: Greenhaven Press, 2009.
+
+Reiner, Thomas. The Place of the Ideal Community in Urban Planning. Philadelphia: University of Pennsylvania Press, 1963.
+
+Lynch, Kevin and Hack, Gary. Site Planning. MIT Press, 1984.
+
+Tompkins, James A., et al. Facilities planning. Hoboken, NJ: J. Wiley, 2003.
+
+Panero, Zeinik M. Human Dimension and Interior Space. New York: Watson-Guptill, 1979.
+
+Ferrer, Eduardo et al. Personal Food Computer. arxiv.org/pdf/1706.05104.pdf
+
+epa.gov/sites/default/files/2015-05/documents/sustainability_primer_v9.pdf
+
+
+Glossary of terms: 
+sector
+resource zone
+services zone
+residential zone
+general services module
+residential arc
+-->
+
+
+  <!-- references are populated by the citeRef module -->
+  <header id="ref"><p class="sub">A6 Research</p><p></p></header>
+  <article><h3>Additional references</h3>
+    <ol class="refs"></ol>
+  </article>
+
+
+
+  <header><p class="sub">Credits</p><p></p></header>
+  <article><h3>Additional acknowledgement</h3>
+  <!-- jWilliamDunn 2023.0309 -->
+  <h5 style="margin-bottom:0;">Special thanks to:</h5>
+    <p style="font-size:14px;">Marvin Minsky, for robotics and AI brainstorming<br>
+    Ruth Marsh, for energy consulting<br>
+    Steve Clark, for engineering consulting<br>
+    Ray Chris Schmidt, for information technology<br>
+    Skip Franklin, co-founder, for collaborations<br>
+    Gretchen Tillitt, for dashboard brainstorming<br>
+    Roni Britton, for advice on nutrition and food supply<br>
+    Rebecca Schultz, for pet and animal support<br>
+    Valerie Fuller, for check-in<br>
+    Gail McGovern, for input from American Red Cross<br>
+    Bill Gates Sr., for collaborations between non-profits<br>
+    Veronica Schmidt, for consulting on pets<br>
+    Elena Schultz, for advice on families<br>
+    The Homeless, for inspiration
+    </p>
+  </article>
+
+   <p></p>
+</main>
+<figcaption class="foot">Release v0.1.0 2023.0510 &copy;2023 kynamatrix Research Network</figcaption>
+
+
+
+
+<script type="text/javascript" src="dark.js"></script>
+<script type="text/javascript" src="citeref.js"></script>
+<script>
+citeRef.create(23);
+const zoomableImages = document.querySelectorAll('.zoom2');
+zoomableImages.forEach(image => {
+  image.addEventListener('click', () => {
+    image.classList.toggle('zoomed');
+  });
+});
+</script>
+</body>
+</html>
