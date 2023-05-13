@@ -51,11 +51,11 @@ Drainage
 <h1>Proximity algorithm</h1>
 
 
-  <header id="abs"><p class="sub">00 Abstract</p></header>
+  <header id="abs"><p class="sub"><span>00</span> Abstract</p></header>
   <article><h3>A framework for disaster recovery.</h3>
-  <p>In the wake of natural disasters, survivors are often left to grapple with the devastating consequences of homelessness and a lack of basic resources. Even though humanitarian services work hard, their responsive and exploratory approach may lead to assistance that is inconsistent, uncoordinated, and temporary. Our solution? A <i class="emph">scalable recovery algorithm</i> for urban emergency environments that guarantees a consistent level of service for up to 100,000 survivors per city instance. And with the implementation of an autonomous system to manage its three phases of operation, no one is left behind in the long-term rebuilding process.</p>
+  <p>In the wake of natural disasters, survivors are often left to struggle with the devastating consequences of homelessness and a lack of basic resources. Even though humanitarian services work hard, their responsive and exploratory approach may lead to assistance that is inconsistent, uncoordinated, and temporary. Our solution? A <i class="emph">scalable recovery algorithm</i> for urban emergency environments that guarantees a consistent level of service for up to 100,000 survivors per city instance. And with the implementation of an autonomous system to manage its three phases of operation, no one is left behind in the long-term rebuilding process.</p>
 
-  <p>Some driving research questions include: How can we improve the user-experience of survivors, and better manage the logistics of provisioning products and services? What is an effective protocol to assist victims with reintegration into society during the recovery phase? In an ideal world, what would a safe, effective, perfectly operating post-disaster recovery scenario look like? Can we end survivor homelessness with an algorithm?</p>
+  <p>Some guiding research questions include: How can we improve the user-experience of survivors, and better manage the logistics of provisioning products and services? What is an effective protocol to assist victims with reintegration into society during the recovery phase? In an ideal world, what would a safe, effective, perfectly operating post-disaster recovery scenario look like? Can we end survivor homelessness with an algorithm?</p>
   </article>
   
 
@@ -86,7 +86,7 @@ Drainage
 
 
 
-  <header id="def"><p class="sub">01 Problem definition</p><p></p></header>
+  <header id="def"><p class="sub"><span>01</span> Problem definition</p><p></p></header>
   <article><h3>Logistics is challenging, especially amid chaos.</h3>
 
   <p>Survivors of natural disasters may find themselves facing numerous challenges, including homelessness and lack of access to basic necessities such as phones, transportation, identification, money, food, water, clean clothes, and a mailing address. Additionally, they may have difficulty accessing a computer to complete emergency forms. The infrastructure they relied on may have been damaged or destroyed and could take months or even years to rebuild. These sudden changes can be overwhelming. How do these individuals cope? Where do they find shelter? Who provides support? Where can they access services to help them recover?</p>
@@ -101,7 +101,7 @@ Drainage
 
 
 
-  <header id="sol"><p class="sub">02 Current solutions</p><p></p></header>
+  <header id="sol"><p class="sub"><span>02</span> Current solutions</p><p></p></header>
   <article><h3>A mix of below-average services.</h3>
   <p>
   An assortment of relief services exist, however, they are reactive, distributed, sporadic, and difficult to use. The majority of relief is provided by the federal government, state and local-level agencies, and non-profit organizations. To a lesser extent some services are provisioned or funded by private individuals and for-profit organizations.
@@ -112,14 +112,16 @@ Drainage
 
 
 
-  <header id="rel"><p class="sub">03 Related works</p></header>
+  <header id="rel"><p class="sub"><span>03</span> Related works</p></header>
   <article><h3>Literature review</h3>
-    <p> A variety of post-disaster operations have been studied including systems design, urban planning, and temporary housing. Recently, there is substantial progress in robotic construction, autonomous drone assistance, and smart-cities.</p> <p>
-    Buchanan [<a href="#ref"><cite><span>R. Buchanan, Design Issues, Vol. 8, No. 2 Spring, 1992, pp. 5-21, jstor.org/stable/1511637</span></cite></a>] recognized that design thinking affects critical areas of activity, organized services, and complex systems or environments. 
+    <p> Post-disaster operations are complex and multidimensional problems that require innovative and adaptive solutions. The following section will examine the current state of research in various domains related to these operations such as systems design, urban planning, temporary housing, robotic construction, autonomous drone assistance, and smart-cities.</p> 
+    
+    <p>
+    From a strategic planning perspective, Buchanan [<a href="#ref"><cite><span>R. Buchanan, Wicked Problems in Design Thinking, Design Issues, Vol. 8, No. 2 Spring, 1992, pp. 5-21, jstor.org/stable/1511637</span></cite></a>] recognized that design thinking affects critical areas of human activity, organized services, and complex systems or environments. 
     
     Batty and Longley [<a href="#ref"><cite><span>M. Batty and P. Longley, Fractal Cities. Academic Press, 1994.</span></cite></a>] pioneered the use of fractal geometry to describe urban layout and to plan city formation.
-    
-    Terzidis [<a href="#ref"><cite><span>K. Terzidis, Algorithmic Architecture. Architectural Press, 2006.</span></cite></a>] explored algorithmic generation of architectural structures. 
+       
+    Terzidis [<a href="#ref"><cite><span>K. Terzidis, Algorithmic Architecture. Architectural Press, 2006.</span></cite></a>] explored how simple algorithms can generate intricate structures in architectural design.
         
         
     Building on this theme, Harris [<a href="#ref"><cite><span>J. Harris, Fractal Architecture, University of New Mexico Press, 2012.</span></cite></a>] used organic patterns of fractal geometry for new architecture. 
@@ -132,7 +134,7 @@ Drainage
     <p>
     Small, sustainable, residential structures have been studied by Pople [<a href="#ref"><cite><span>N. Pople, Small houses. New York, NY: Universe Publishing, 2003.</span></cite></a>], Richardson [<a href="#ref"><cite><span>P. Richardson, XS: small structures, green architecture. New York, NY: Universe, 2007.</span></cite></a>], and Ryker [<a href="#ref"><cite><span>L. Ryker, Off the grid homes: case studies for sustainable living. Layton, UT: Gibbs Smith, 2007.</span></cite></a>].
        For post-disaster structures, Yeung and Harkins [<a href="#ref"><cite><span>W. Yeung and J. Harkins, Digital architecture for humanitarian design in post-disaster reconstruction, in International Journal of Architectural Computing, 9(1), pp.17-31., 2011, doi.org/10.1260/1478-0771.9.1.17</span></cite></a>] suggested that parametric modeling and generative algorithmic design is useful. 
-    Similary, for post-disaster living spaces, Karaoğlan and Alaçam [<a href="#ref"><cite><span>F. Karaoğlan and S. Alaçam, Design of a post-disaster shelter through soft computing, in International Journal of Architectural Computing, Vol. 17, No. 2, 2019, doi.org/10.1177/1478077119849694</span></cite></a>] explored 2D layouts that are generated and evaluated using genetic algorithms and fuzzy neural trees.
+    Similarly, for post-disaster living spaces, Karaoğlan and Alaçam [<a href="#ref"><cite><span>F. Karaoğlan and S. Alaçam, Design of a post-disaster shelter through soft computing, in International Journal of Architectural Computing, Vol. 17, No. 2, 2019, doi.org/10.1177/1478077119849694</span></cite></a>] explored 2D layouts that are generated and evaluated using genetic algorithms and fuzzy neural trees.
     </p>
 
     <p>
@@ -168,7 +170,7 @@ To successfully solve a complex problem, it must be decomposed into provably cor
 
 
 
-  <header id="pro"><p class="sub">04 Proposal</p><p></p></header>
+  <header id="pro"><p class="sub"><span>04</span> Proposal</p><p></p></header>
   <article><h3>System specification needed</h3>
   <p> To better orchestrate the delivery and provisioning of relief services, we propose a "Scalable Recovery Algorithm" - a simple, modular, scalable, reusable, centralized support system utilizing innovative technologies. A fractal-like recursive method for deploying an emergency urban environment, the plans reliably handle from 1,000 to 100,000 people (survivors, displaced, evacuees, and recovery teams) per instance and can be rapidly deployed. We use the term <span class="emph"><i>algorithm</i></span> here because of the growing usage and understanding of its meaning, and to capture the nature of the plan as a step-wise, repeatable procedure.</p>
   <p>Ideally, precise documentation should be created to specify an exact and provable design. A formal specification language known as TLA<sup>+</sup> (Temporal Logic of Actions) [<a href="#ref"><cite><span>L. Lamport, Specifying Systems: The TLA+ Language and Tools for Hardware and Software Engineers, Addison-Wesley, Boston, MA, USA, 2002.</span></cite></a>] enables the testing of complex designs prior to implementation. 
@@ -181,7 +183,7 @@ For example, engineers used TLA<sup>+</sup> [<a href="#ref"><cite><span>C. Newco
   </article> <!-- Proposal -->
 
 
-  <header id="alg"><p class="sub">05 Algorithm</p><p></p></header>
+  <header id="alg"><p class="sub"><span>05</span> Algorithm</p><p></p></header>
   <article><h3>A well-ordered methodology</h3>
   <p>To solve a given problem, an algorithm follows a series of steps in a logical order. Our solution integrates new and existing technologies and connects them to a central system that can coordinate and support disaster relief efforts. Multiple instances of this system can launch simultaneously as needed. The system operates in three main stages: deployment, management, and closure. In the following sections, we describe the key features and functions of each stage.</p>
   <pre class="alg"><code><!-- jWilliamDunn 2023.0427 -->
@@ -224,7 +226,7 @@ For example, engineers used TLA<sup>+</sup> [<a href="#ref"><cite><span>C. Newco
 
 
 
-  <header id="frm"><p class="sub">06 Framework</p><p></p></header>
+  <header id="frm"><p class="sub"><span>06</span> Framework</p><p></p></header>
   <article><h3>System architecture</h3>
   <p>
   Defined as the footprint of the system, the framework includes elemental factors such as urban policy; master plan; site feasibility; climatic considerations; and total cost. Each of these are discussed below.
@@ -279,7 +281,7 @@ For example, engineers used TLA<sup>+</sup> [<a href="#ref"><cite><span>C. Newco
 
 
 
-  <header id="inf"><p class="sub">07 Infrastructure</p></header>
+  <header id="inf"><p class="sub"><span>07</span> Infrastructure</p></header>
   <article><h3>Elemental factors</h3>
     <p> This section addresses fundamental needs such as communication; public safety; transport methods and accessibility; distribution of energy &amp; water; waste management; integrated energy re-usability; and sustainability. In the figure below, parcels are mapped to areas of the arc blueprint. Observe the order from left to right of the resource area (at the core of the circle), the designated service center area, and finally, the modular housing area. Also note the estimates for numbers of people. For example, a fully populated sector can accommodate up to 7,744 people. A more comfortable level would be 4,166 with some areas designated for green-space parks.</p>
   <figure>
@@ -317,7 +319,7 @@ For example, engineers used TLA<sup>+</sup> [<a href="#ref"><cite><span>C. Newco
 
 
 
-  <header id="arc"><p class="sub">08 Architecture</p></header>
+  <header id="arc"><p class="sub"><span>08</span> Architecture</p></header>
   <article><h3>Design overview</h3>
     <p>The temporary city instance consists of three main components: centralized resource centers, distributed service centers, and secure compartmentalized housing. The centralized resource centers store and distribute essentials such as food, water, and other supplies. The distributed service centers are larger buildings that offer communal spaces for social interaction and mutual aid. The secure compartmentalized housing are smaller units that can be linked together to form clusters. They provide privacy and shelter for the survivors. </p><p> The design of the temporary city instance incorporates innovative materials and techniques that meet the criteria of emergency environment structures. These structures are non-polluting, reusable, quick to assemble, light weight to transport, and scalable to handle different disaster scenarios. They also balance the comfort and safety of the survivors with the need to avoid long-term dependency.</p>
   <h3>Construction</h3>
@@ -327,7 +329,7 @@ For example, engineers used TLA<sup>+</sup> [<a href="#ref"><cite><span>C. Newco
 
 
 
-  <header id="src"><p class="sub">09 Architecture</p></header>
+  <header id="src"><p class="sub"><span>09</span> Architecture</p></header>
   <article><h3>Resource centers</h3>
     <p>Forming the physical central core of the city is a space for support systems including resource storage, factory modules, energy generation, and waste removal/recycling. This zone provides all resources for the sector it is assigned. Factories are initialized with raw materials and produce refined components and assemblies. Power plants distribute energy to support the activity of all systems, services, and residences. The larger sector areas beyond the residential zones can be utilized for resource storage or processing when extra space is required.</p>
   <figure>
@@ -338,7 +340,7 @@ For example, engineers used TLA<sup>+</sup> [<a href="#ref"><cite><span>C. Newco
   </article name="Resource centers">
 
 
-  <header id="srv"><p class="sub">10 Architecture</p></header>
+  <header id="srv"><p class="sub"><span>10</span> Architecture</p></header>
   <article><h3>Service modules</h3>
 <p>Each sector includes a zone for three service modules situated centrally, as indicated in the figure below, between the supporting resource center and the residential arcs. The service modules include a flexible floor plan with each covering an area of 72,464 sqft (6732 square meters), measuring 453 ft by 160 ft (138m x 49m). For comparison, an average Costco warehouse store is twice the size at 144,000 sqft. Other features include: ultra-fast assembly, modular outer walls, tensile fiberglass roof, configurable interior spaces.</p>
   <figure>
@@ -365,7 +367,7 @@ For example, engineers used TLA<sup>+</sup> [<a href="#ref"><cite><span>C. Newco
 
 
 
-  <header id="res"><p class="sub">11 Architecture</p></header>
+  <header id="res"><p class="sub"><span>11</span> Architecture</p></header>
   <article><h3>Residential units</h3>
   <p>Minimalistic and smart residential units are based on a 12' x 12' (144 sqft) foot print. Each unit is designed for two adults. An expansion unit,  can comfortably house up to three children. Two units (pictured below) measures 12' x 24' (288 sqft)<sup>*</sup>. The units can be assembled in a two-story option or interlinked (post-assembly) for additional space. These modular units can be quickly manufactured and assembled on-site. All components are recyclable and nonpolluting. </p>
   <p>* For comparison, a typical FEMA trailer measures 14' by 22' (308 sqft) [Wikipedia: <a href="https://en.wikipedia.org/wiki/FEMA_trailer" target="_blank">FEMA trailer</a>].</p>
@@ -417,21 +419,23 @@ For example, engineers used TLA<sup>+</sup> [<a href="#ref"><cite><span>C. Newco
 
 
 
-  <header id="mgt"><p class="sub">12 Management</p></header>
+  <header id="mgt"><p class="sub"><span>12</span> Management</p></header>
   <article><h3>Maintenance</h3>
-<p>The entire system status can be monitored and managed with ease including deployment; setup; maintenance; provisioning (such as food, clothing, counseling, childcare, education, transportation, health &amp; policing services); tear down; and cleaning &amp; storage of the system components between uses. </p>
+<p>The entire system status can be monitored and managed with ease including deployment, setup, maintenance, provisioning (such as food, clothing, counseling, childcare, education, transportation, health &amp; policing services), tear down, and cleaning &amp; storage of the system components between uses. </p>
   <figure>
     <img src="img/console-light.png" class="imgborder darkswap" alt=" "/>
   </figure>
   <figcaption>Fig. 19. Early sketch of the management console</figcaption>
   
-<p>Below is an example visualization of the management console. The present view is indicating all security-related issues, gray-coded by severity. An authorized manager would be able to access this screen and swipe left or right for the maintenance, inventory, or other views. Tapping on any arc would open an additional view to present or update detailed status. An interactive, color version is under development [Website: <a href="https://openprocessing.org/sketch/820777" target="_blank">visual</a>].</p>
+<p>Below is an example visualization of the management console. The present view is indicating all security-related issues, gray-coded by severity. An authorized manager would be able to access this screen and swipe left or right for the maintenance, inventory, or other views. Tapping on any arc would open an additional view to present or update detailed status.</p>
   <figure>
     <img src="img/manage-light.PNG" class="zoom darkswap" alt=" "/>
   </figure>
   <figcaption>Fig. 20. Visualization of the management console (click or tap to zoom)</figcaption>
 
-  <p>Find example management status levels in the <a href="appendix.html#mgt">appendix</a>.</p>
+  <p>
+  An interactive, color version is under development as an OpenProcessing sketch. [Website: <a href="https://openprocessing.org/sketch/820777" target="_blank">visual</a>]. 
+  Example management status levels are described in the <a href="appendix.html#mgt">appendix</a>.</p>
   
 <h3></h3>
 <p>The system ensures orderly distribution of resources with a smart allocation algorithm. The computer tracks the usage and inventory of supplies and reorders them automatically. Families receive identifier smart cards that prevent looting and theft. The cards are password protected and easy to cancel if stolen. The system can also locate unauthorized users with tracking enabled from the security management screen. The algorithm provides clear instructions for every step of the process: set up, distribution, restocking, and tear down. The master manual covers all activities and is available online, audio, and printed format.</p>
@@ -448,7 +452,7 @@ advancing the state-of-the-art in communicating knowledge using multimodal natur
 
 
 
-  <header id="cls"><p class="sub">13 Closure</p></header>
+  <header id="cls"><p class="sub"><span>13</span> Closure</p></header>
   <article><h3>System shutdown</h3>
   <p>The temporary city instance shuts down when it reaches the minimum population threshold. The system relocates any remaining survivors to other temporary shelters in the affected areas. Then, it deconstructs all infrastructure in an orderly manner and transports all material from the site. The system ensures that the location is clean and free of any traces of the instance. Finally, it returns all resources to their source origins for inspection, storage, and future use. </p>
   </article name="Closure">
@@ -461,7 +465,7 @@ advancing the state-of-the-art in communicating knowledge using multimodal natur
   
 
   <!-- references are automatically populated using the citeRef module -->
-  <header id="ref"><p class="sub">14 Research</p><p></p></header>
+  <header id="ref"><p class="sub"><span>14</span> Research</p><p></p></header>
   <article><h3>References</h3>
     <ol class="refs"></ol>
   </article>
@@ -483,7 +487,7 @@ advancing the state-of-the-art in communicating knowledge using multimodal natur
 
    <p></p>
 </main>
-<figcaption class="foot">Release v0.1.0 2023.0510 &copy;2023 kynamatrix Research Network</figcaption>
+<figcaption class="foot">Release v0.1.0 2023.0510 &copy;2023 <a href="https://kynamatrix.org" target="_blank">kynamatrix</a> Research Network</figcaption>
 
 
                                                                             <!--

@@ -104,6 +104,8 @@ header p.sub {
   font-weight: normal;
   color: #777;
 }
+.dark header p.sub span {color:#eee;}
+.light header p.sub span {color:#000;}
 figure {
   margin-left: 0;
   margin-right: 0;
