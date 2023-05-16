@@ -28,7 +28,7 @@ function toggleDark(e){
     var d=document.documentElement, c=d.classList;
     // check local storage first for override
     var e=localStorage.getItem('theme');
-    if(e==='light')                   gDark=false; else gDark=true;
+    if(e==='light') gDark=false; else gDark=true;
     if('system'===e || (!e && true)) {
       // check OS default
       var t='(prefers-color-scheme: dark)',
